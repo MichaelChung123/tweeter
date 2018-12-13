@@ -1,6 +1,6 @@
 $(document).ready(function() {
   console.log("ready");
-  let counter = 10;
+  let counter = 140;
 
   $(".new-tweet .textbox").on('input', function() {
     let inputLength = this.value.length;
@@ -9,10 +9,10 @@ $(document).ready(function() {
 
     if(counterNum < 0) {
       counterAccess.addClass("negative-counter");
+
     } else {
       counterAccess.removeClass("negative-counter");
     }
-
     counterAccess.text(counterNum);
   });
 

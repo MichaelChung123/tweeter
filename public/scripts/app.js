@@ -62,7 +62,7 @@ const tweetData = [
     var footer = tweetData.created_at;
 
     var $tweet = $("<article>").addClass('tweet').html(`
-
+      <article class="tweet-article">
       <header class="tweet-header">
       <img src="${avatar}" class="user-image"/>
       <h1 class="username">${twName}</h1>
@@ -78,6 +78,7 @@ const tweetData = [
       <img src="heart.png" class="icons"/>
       </div>
       </footer>
+      </article>
 
       `);
 
@@ -85,16 +86,47 @@ const tweetData = [
   }
 
   function renderTweets(tweetArray) {
-    // console.log(createTweetElement(tweetArray[0]));
+    //clear the container class
+    // $('.tweet').empty();
+
     for(let x of tweetArray) {
       $('.container').append(createTweetElement(x));
     }
   }
 
-  renderTweets(tweetData);
+  function loadTweets() {
+     $.ajax({
+      type: "GET",
+      url: '/tweets',
+      success: function(result){
+        renderTweets(result);
+      },
+      error: function(error){
+        console.log("some error occurred");
+      }
+    });
+  }
 
-   // let $tweet = createTweetElement(tweetData);
-   // $('.tweet').append($tweet);
+  $("#tweet-form").on("submit", function(event) {
+    event.preventDefault();
+    let queryTweet = $(this).serialize();
+
+    $.ajax({
+      type: "POST",
+      url: '/tweets',
+      data: queryTweet,
+      success: function(result){
+        console.log("successful POST for tweet");
+        loadTweets();
+      },
+      error: function(error){
+        console.log(error);
+      }
+    });
+  });
+
+  loadTweets();
+
 });
 
 

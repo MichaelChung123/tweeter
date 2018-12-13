@@ -33,6 +33,8 @@
   <!-- Tweet Hover JS -->
   <script type="text/javascript" src="/scripts/tweet-mouse-hover.js"></script>
 
+  <!-- Tweet Submit AJAX -->
+  <script type="text/javascript" src="/scripts/ajax-submit-tweet.js"></script>
 
 </head>
 
@@ -49,7 +51,7 @@
 
     <section class="new-tweet">
       <h2>Compose Tweet</h2>
-      <form method="POST" action="/tweets">
+      <form method="POST" action="/tweets" id="tweet-form">
         <textarea name="text" class="textbox" placeholder="What are you humming about?"></textarea>
         <input type="submit" value="Tweet" class="tweet-button">
         <span class="counter">140</span>
