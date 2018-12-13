@@ -1,0 +1,84 @@
+.tweet {
+  margin: 50px 50px 50px 50px;
+  border-radius: 5px;
+  border: 1px solid #dcdddb;
+}
+
+.tweet .tweet-article {
+  margin: 0px 10px 0px 0px;
+  padding: 10px 10px 10px 10px;
+}
+
+/*.tweet-header {
+
+}*/
+
+.user-image {
+  width: 50px;
+  border-radius: 5px;
+  opacity: 0.5;
+}
+
+.tweet .tweet-header .username {
+  float:right;
+  position: relative;
+  right:110px;
+  bottom: 18px;
+  font-size:25px;
+  opacity: 0.5;
+/*  color: #dcdddb;
+*/}
+
+.tweet .tweet-header .tag {
+  font-size: 13px;
+  position: relative;
+  left: 205px;
+  bottom: 34px;
+}
+
+.tweet .tweet-text {
+  float: left;
+  margin: 28px 10px 10px 0px;
+}
+
+.tweet .tweet-footer {
+  position: relative;
+  top: 20px;
+  font-size: 12px;
+  width: 60px;
+}
+
+.icons {
+  visibility: hidden;
+  width: 25px;
+  height: 25px;
+}
+
+.icon-container {
+  position: relative;
+  left: 245px;
+  bottom: 13px;
+  width: 90px;
+
+}
+
+.mouse-enter {
+  margin: 50px 50px 50px 50px;
+  border: 1px solid black;
+  border-radius: 5px;
+
+}
+
+.tweet .tweet-header .mouse-enter-user-image {
+  opacity: 1;
+}
+
+.mouse-enter-icons {
+  visibility: visible;
+}
+
+.mouse-enter-text {
+  color: black;
+}
+
+
