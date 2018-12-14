@@ -1,5 +1,4 @@
 $(document).ready(function() {
-  console.log("ready");
   let counter = 140;
 
   $(".new-tweet .textbox").on('input', function() {

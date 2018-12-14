@@ -33,8 +33,9 @@
   <!-- Tweet Hover JS -->
   <script type="text/javascript" src="/scripts/tweet-mouse-hover.js"></script>
 
-  <!-- Tweet Submit AJAX -->
+<!--   Tweet Submit AJAX
   <script type="text/javascript" src="/scripts/ajax-submit-tweet.js"></script>
+ -->
 
 </head>
 
@@ -44,12 +45,14 @@
   <nav id="nav-bar">
     <img class="logo" src="/images/bird.png">
     <span class="header">Tweeter</span>
+    <button class="compose-button">Compose</button>
   </nav>
 
   <!-- Page-specific (main) content here -->
   <main class="container">
 
     <section class="new-tweet">
+      <!-- <h1 class="error"></h1> -->
       <h2>Compose Tweet</h2>
       <form method="POST" action="/tweets" id="tweet-form">
         <textarea name="text" class="textbox" placeholder="What are you humming about?"></textarea>
@@ -58,7 +61,7 @@
       </form>
     </section>
 
-    <section class="tweet">
+    <section class="tweets-section">
  <!--      <article class="tweet-article">
         <header class="tweet-header">
           <img src="mcd.jpeg" class="user-image"/>

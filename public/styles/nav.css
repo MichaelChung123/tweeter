@@ -23,3 +23,14 @@
   height: 80px;
   float: left;
 }
+
+#nav-bar .compose-button {
+  position: relative;
+  left: 395px;
+  top: 8px;
+  font-size: 18px;
+  padding: 20px 10px 20px 35px;
+  border: 1px solid black;
+  border-radius: 5px;
+  color:#00a087;
+}

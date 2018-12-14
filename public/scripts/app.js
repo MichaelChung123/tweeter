@@ -62,7 +62,6 @@ const tweetData = [
     var footer = tweetData.created_at;
 
     var $tweet = $("<article>").addClass('tweet').html(`
-      <article class="tweet-article">
       <header class="tweet-header">
       <img src="${avatar}" class="user-image"/>
       <h1 class="username">${twName}</h1>
@@ -78,8 +77,6 @@ const tweetData = [
       <img src="heart.png" class="icons"/>
       </div>
       </footer>
-      </article>
-
       `);
 
     return $tweet[0];
@@ -87,10 +84,10 @@ const tweetData = [
 
   function renderTweets(tweetArray) {
     //clear the container class
-    // $('.tweet').empty();
+    $('.tweets-section').empty();
 
     for(let x of tweetArray) {
-      $('.container').append(createTweetElement(x));
+      $('.tweets-section').append(createTweetElement(x));
     }
   }
 
@@ -107,22 +104,61 @@ const tweetData = [
     });
   }
 
+  function escape(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+
+    return div.innerHTML;
+  }
+
   $("#tweet-form").on("submit", function(event) {
     event.preventDefault();
-    let queryTweet = $(this).serialize();
+    let tweetText = event.target[0].value;
 
-    $.ajax({
-      type: "POST",
-      url: '/tweets',
-      data: queryTweet,
-      success: function(result){
-        console.log("successful POST for tweet");
-        loadTweets();
-      },
-      error: function(error){
-        console.log(error);
-      }
-    });
+    // XSS Testing Script: <script>alert("testing xss");</script>
+    //avoiding xss scripts
+    event.target[0].value = escape(event.target[0].value);
+
+    let queryTweet = $(this).serialize();
+    let tweetInput = event.target[0].value;
+    let tweetLength = tweetInput.length;
+    let currentLength = 140 - tweetLength;
+
+    let $h1 = $("<h1 class='error'></h1>");
+
+
+    if(currentLength < 0) {
+      $h1.text("Tweet too long!");
+      $('.new-tweet').append($h1);
+      $('.error').slideToggle(750);
+    } else if(tweetInput === "" || tweetInput === null) {
+      $h1.text("You need to write a tweet before posting one!");
+      $('.new-tweet').append($h1);
+      $('.error').slideToggle(750);
+    } else {
+      $.ajax({
+        type: "POST",
+        url: '/tweets',
+        data: queryTweet,
+        success: function(result){
+          console.log("successful POST for tweet");
+          loadTweets();
+          //setting text back to the normal text form
+          event.target[0].value = tweetText;
+          $('.error').slideToggle(750);
+        },
+        error: function(error){
+          console.log(error);
+        }
+      });
+    }
+  });
+
+  let composeClicked;
+
+  $('.compose-button').on('click', function(event) {
+    $('.new-tweet').slideToggle(750);
+    $('.textbox').select();
   });
 
   loadTweets();

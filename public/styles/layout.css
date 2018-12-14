@@ -31,3 +31,15 @@ body {
   margin: 140px auto;
   background-color: white;
 }
+
+.compose-area {
+  height: 0px;
+}
+
+.new-tweet {
+  display: none;
+}
+
+.error {
+  display: none;
+}
