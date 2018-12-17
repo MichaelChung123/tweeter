@@ -4,6 +4,9 @@
   <!-- Meta Information -->
   <title>Tweeter - Home Page</title>
 
+  <!-- Font Awesome CSS -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous" />
+
   <!-- External CSS -->
   <link rel="stylesheet" href="/vendor/normalize-4.1.1.css" type="text/css" />
 
@@ -33,6 +36,9 @@
   <!-- Tweet Hover JS -->
   <script type="text/javascript" src="/scripts/tweet-mouse-hover.js"></script>
 
+  <!-- Downloaded Moment from internet -->
+  <script type="text/javascript" src="/vendor/moment-with-locales.js"></script>
+
 <!--   Tweet Submit AJAX
   <script type="text/javascript" src="/scripts/ajax-submit-tweet.js"></script>
  -->
@@ -45,14 +51,13 @@
   <nav id="nav-bar">
     <img class="logo" src="/images/bird.png">
     <span class="header">Tweeter</span>
-    <button class="compose-button">Compose</button>
+    <button class="compose-button"><i class="far fa-edit"></i>Compose</button>
   </nav>
 
   <!-- Page-specific (main) content here -->
   <main class="container">
 
     <section class="new-tweet">
-      <!-- <h1 class="error"></h1> -->
       <h2>Compose Tweet</h2>
       <form method="POST" action="/tweets" id="tweet-form">
         <textarea name="text" class="textbox" placeholder="What are you humming about?"></textarea>
@@ -62,7 +67,8 @@
     </section>
 
     <section class="tweets-section">
- <!--      <article class="tweet-article">
+ <!--   This is the block of HTML that is being replaced and injected from app.js
+   <article class="tweet-article">
         <header class="tweet-header">
           <img src="mcd.jpeg" class="user-image"/>
           <h1 class="username">Michael Chung</h1>

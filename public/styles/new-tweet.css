@@ -3,6 +3,7 @@
   padding: 0px 50px 30px 20px;
   border: 1px solid grey;
   border-radius: 5px;
+  background-color: #efefef;
 }
 
 .tweet-button {
@@ -30,5 +31,4 @@
 h2 {
   border-bottom: 1px solid black;
   width:310px;
-
 }

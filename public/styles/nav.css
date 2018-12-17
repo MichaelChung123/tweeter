@@ -32,5 +32,14 @@
   padding: 20px 10px 20px 35px;
   border: 1px solid black;
   border-radius: 5px;
-  color:#00a087;
+  /* color:#00a087; */
+}
+
+#nav-bar i {
+  position: relative;
+  right:10px;
+}
+
+.compose-clicked {
+    color:#00a087;
 }

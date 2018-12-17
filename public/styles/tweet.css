@@ -9,41 +9,42 @@
   padding: 10px 10px 10px 10px;
 }
 
-/*.tweet-header {
-
-}*/
-
 .user-image {
   width: 50px;
   border-radius: 5px;
   opacity: 0.5;
+  margin: 10px 10px 10px 10px;
+}
+
+.tweet .tweet-header {
+  background-color: #efefef;
 }
 
 .tweet .tweet-header .username {
-  float:right;
+  float: right;
   position: relative;
-  right:110px;
-  bottom: 18px;
-  font-size:25px;
+  right: 135px;
+  bottom: 10px;
+  font-size: 25px;
   opacity: 0.5;
-/*  color: #dcdddb;
-*/}
+}
 
 .tweet .tweet-header .tag {
   font-size: 13px;
   position: relative;
-  left: 205px;
-  bottom: 34px;
+  left: 190px;
+  bottom: 46px;
 }
 
 .tweet .tweet-text {
   float: left;
-  margin: 28px 10px 10px 0px;
+  margin: 28px 10px 10px 10px;
 }
 
 .tweet .tweet-footer {
   position: relative;
   top: 20px;
+  left: 10px;
   font-size: 12px;
   width: 60px;
 }

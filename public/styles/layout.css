@@ -27,8 +27,8 @@ body {
 
 .container {
   width: 450px;
-  /* should be center aligned to the body */
-  margin: 140px auto;
+  margin: 80px auto;
+  padding-top: 20px;
   background-color: white;
 }
 

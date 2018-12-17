@@ -4,7 +4,7 @@
  * Reminder: Use (and do all your DOM work in) jQuery's document ready function
  */
  $(document).ready(function() {
-  // Test / driver code (temporary). Eventually will get this from the server.
+// Test / driver code (temporary). Eventually will get this from the server.
 // Fake data taken from tweets.json
 const tweetData = [
 {
@@ -55,22 +55,25 @@ const tweetData = [
 
   // returns the HTML structure of the tweet
   function createTweetElement (tweetData) {
-    var twName = tweetData.user.name;
-    var avatar = tweetData.user.avatars.small;
-    var at = tweetData.user.handle;
-    var cont = tweetData.content.text;
+    var tweetName = tweetData.user.name;
+    var avatarSmall = tweetData.user.avatars.small;
+    var handle = tweetData.user.handle;
+    var content = tweetData.content.text;
     var footer = tweetData.created_at;
+    let footerFormat = moment(footer).fromNow();
+
+    console.log(footerFormat);
 
     var $tweet = $("<article>").addClass('tweet').html(`
       <header class="tweet-header">
-      <img src="${avatar}" class="user-image"/>
-      <h1 class="username">${twName}</h1>
-      <content class="tag">${at}</content>
+      <img src="${avatarSmall}" class="user-image"/>
+      <h1 class="username">${tweetName}</h1>
+      <content class="tag">${handle}</content>
       </header>
 
-      <content class="tweet-text">${cont}</content>
+      <content class="tweet-text">${content}</content>
 
-      <footer class="tweet-footer">${footer}
+      <footer class="tweet-footer">${footerFormat}
       <div class="icon-container">
       <img src="flag.png" class="icons"/>
       <img src="refresh.png" class="icons"/>
@@ -87,7 +90,7 @@ const tweetData = [
     $('.tweets-section').empty();
 
     for(let x of tweetArray) {
-      $('.tweets-section').append(createTweetElement(x));
+      $('.tweets-section').prepend(createTweetElement(x));
     }
   }
 
@@ -99,7 +102,7 @@ const tweetData = [
         renderTweets(result);
       },
       error: function(error){
-        console.log("some error occurred");
+        console.log("loadTweets() erroring");
       }
     });
   }
@@ -110,6 +113,8 @@ const tweetData = [
 
     return div.innerHTML;
   }
+  
+ 
 
   $("#tweet-form").on("submit", function(event) {
     event.preventDefault();
@@ -125,7 +130,6 @@ const tweetData = [
     let currentLength = 140 - tweetLength;
 
     let $h1 = $("<h1 class='error'></h1>");
-
 
     if(currentLength < 0) {
       $h1.text("Tweet too long!");
@@ -148,121 +152,25 @@ const tweetData = [
           $('.error').slideToggle(750);
         },
         error: function(error){
-          console.log(error);
+          console.log("unable to complete POST request for tweet");
         }
       });
     }
   });
-
-  let composeClicked;
 
   $('.compose-button').on('click', function(event) {
     $('.new-tweet').slideToggle(750);
     $('.textbox').select();
   });
 
+  $('.compose-button').on('mousedown', function(event) {
+    $('.compose-button').addClass('compose-clicked');
+  });
+
+  $('.compose-button').on('mouseup', function(event) {
+    $('.compose-button').removeClass('compose-clicked');
+  });
+
   loadTweets();
-
+  
 });
-
-
-
- // let name = tweetData.user.name;
-    // let smallAvatar = tweetData.user.avatars.small;
-    // let regularAvatar = tweetData.user.avatars.regular;
-    // let largeAvatar = tweetData.user.avatars.large;
-    // let handle = tweetData.user.handle;
-    // let content = tweetData.content.text;
-    // let created_at = tweetData.created_at;
-
-
-
-
-    // let $article = $("<article class='tweet-article'></article>");
-    // // $('.tweet').append($article);
-
-    // let $header = $("<header class='tweet-header'></header>");
-    // // $('.tweet-article').append($header);
-
-    // let $img = $('<img>');
-    // $img.addClass('user-image');
-    // $('.tweet-header').append($img);
-
-    // let $h1 = $("<h1 class='username'></h1>").text(name);
-    // // $('.tweet-header').append($h1);
-
-    // let $content = $("<content class='tag'></content>").text(handle);
-    // // $('.tweet-header').append($content);
-
-    // let $content2 = $('<content>');
-    // $content2.addClass('tweet-text');
-    // $content2.text(content);
-    // $('.tweet-article').append($content2);
-
-    // let $footer = $('<footer>');
-    // $footer.addClass('tweet-footer');
-    // $footer.text(created_at);
-    // $('.tweet-article').append($footer);
-
-    // let $div = $('<div>');
-    // $div.addClass('icon-container');
-    // $('footer-class').append($div);
-
-    // $img.addClass('icons');
-    // $img.attr("src", smallAvatar);
-    // $('.icon-container').append($img);
-
-    // $img.addClass('icons');
-    // $img.attr("src", regularAvatar);
-    // $('.icon-container').append($img);
-
-    // $img.addClass('icons');
-    // $img.attr("src", largeAvatar);
-    // $('.icon-container').append($img);
-
-    // let $article = $("<article class='tweet-article'></article>");
-    // $('.tweet').append($article);
-
-    // let $header = $("<header class='tweet-header'></header>");
-    // $header.addClass('tweet-header');
-    // $('.tweet-article').append($header);
-
-    // let $img = $('<img>');
-    // $img.addClass('user-image');
-    // $('.tweet-header').append($img);
-
-    // let $h1 = $('<h1>');
-    // $h1.addClass('username');
-    // $h1.text(name);
-    // $('.tweet-header').append($h1);
-
-    // let $content = $('<content>');
-    // $content.addClass('tag');
-    // $content.text(handle);
-    // $('.tweet-header').append($content);
-
-    // let $content2 = $('<content>');
-    // $content2.addClass('tweet-text');
-    // $content2.text(content);
-    // $('.tweet-article').append($content2);
-
-    // let $footer = $('<footer>');
-    // $footer.addClass('tweet-footer');
-    // $footer.text(created_at);
-    // $('.tweet-article').append($footer);
-
-    // let $div = $('<div>');
-    // $div.addClass('icon-container');
-    // $('footer-class').append($div);
-
-    // $img.addClass('icons');
-    // $img.attr("src", smallAvatar);
-    // $('.icon-container').append($img);
-
-    // $img.addClass('icons');
-    // $img.attr("src", regularAvatar);
-    // $('.icon-container').append($img);
-
-    // $img.addClass('icons');
-    // $img.attr("src", largeAvatar);
-    // $('.icon-container').append($img);
